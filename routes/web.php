@@ -16,11 +16,15 @@ use App\Http\Controllers\HomeController;
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     Route::get('/', function () {
-        // dd('hello');
+        // phpinfo();
         return view('dashboard');
     })->name('dashboard');
 
     Route::post('import', [HomeController::class, 'import']);
     Route::get('/searchEmployee', [HomeController::class, 'searchEmployee']);
     Route::post('store', [HomeController::class, 'store']);
+});
+
+Route::get('test', function () {
+    return view('test');
 });

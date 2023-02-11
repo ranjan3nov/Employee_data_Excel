@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Search Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.3.js"
         integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     {{-- Data Tables --}}
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
@@ -40,8 +41,9 @@
     </nav>
     {{-- Navbar End --}}
 
-    <div class="container">
-        <h2 class="text-center mt-5">Search Employee</h2>
+    <div class="container mt-3 mb-4 p-2 border rounded border-dark text-center">
+
+            <span class=" heading text-center mt-2">Search Employee</span>
 
         <div class="container">
             <table class="table" id="myTable">

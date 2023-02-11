@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+resources/views/test.blade.php
+resources/views/test.blade.php
+resources/views/dashboard.blade copy.php
