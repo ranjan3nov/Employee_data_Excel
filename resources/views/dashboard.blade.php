@@ -16,7 +16,7 @@
     {{-- Navbar Start --}}
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">4sTechonlogy</a>
+            <a class="navbar-brand" href="#">Ranjan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -38,40 +38,38 @@
     </nav>
     {{-- Navbar End --}}
 
-    <div class="container ">
-
-        <div class="error">
-            {{-- Validation Error Message --}}
-            @if ($errors->any())
-            <div class="alert w-50 alert-danger alert-dismissible fade show" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-            </div>
-            @endif
-
-            @if(Session::has('success'))
-            <div class="alert w-50 alert-success alert-dismissible fade show" role="alert">
-                {{Session::get('success')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-            </div>
-
-            @elseif(Session::has('error'))
-            <div class="alert w-50 alert-danger alert-dismissible fade show" role="alert">
-                {{Session::get('error')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-            </div>
-            @endif
+    <div class="error">
+        {{-- Validation Error Message --}}
+        @if ($errors->any())
+        <div class="alert w-50 alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
         </div>
+        @endif
+
+        @if(Session::has('success'))
+        <div class="alert w-50 alert-success alert-dismissible fade show" role="alert">
+            {{Session::get('success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+
+        @elseif(Session::has('error'))
+        <div class="alert w-50 alert-danger alert-dismissible fade show" role="alert">
+            {{Session::get('error')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+        @endif
+    </div>
+
+    <div class="container ">
 
         <div class="row">
             <div class="col p-2">
                 <h5 class="text-center mt-5 mb-5">Only Excel Files are supported with Correct Header</h5>
-
-
                 <form class="form-container" action="{{ url('import') }}" method="POST" enctype='multipart/form-data'>
                     @csrf
                     <div class="upload-files-container">
@@ -85,15 +83,11 @@
                         <button type="submit" class="upload-button"> Upload </button>
                     </div>
                 </form>
-
-
-
             </div>
 
             <div class="col">
-
                 <div class=" mx-auto border border-dark mt-5 p-4 rounded text-center">
-                    <span class=" heading text-center">Add Employee</span>
+                    <span class=" heading">Add Employee</span>
                     <form class="row mt-3" method="POST" action="{{url('store')}}">
                         @csrf
                         <div class="col-6 mb-3">
