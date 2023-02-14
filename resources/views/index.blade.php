@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{url('/')}}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{url('/searchEmployee')}}">Search Employee</a>
+                        <a class="nav-link " href="{{url('/addEmployee')}}">Add Employee</a>
                     </li>
                 </ul>
             </div>
@@ -40,12 +40,27 @@
         </div>
     </nav>
     {{-- Navbar End --}}
+    <div class="error">
+
+        @if(Session::has('success'))
+        <div class="alert w-50 alert-success alert-dismissible fade show" role="alert">
+            {{Session::get('success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+
+        @elseif(Session::has('error'))
+        <div class="alert w-50 alert-danger alert-dismissible fade show" role="alert">
+            {{Session::get('error')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+        </div>
+        @endif
+    </div>
 
     <div class="container mt-3 mb-4 p-2 border rounded border-dark text-center">
 
-            <span class=" heading text-center mt-2">Search Employee</span>
+        <span class=" heading text-center mt-2">Search Employee</span>
 
-        <div class="container">
+        <div class="container table-responsive">
             <table class="table" id="myTable">
                 <thead>
                     <tr>
@@ -58,6 +73,8 @@
                         <th>PF</th>
                         <th>ESIC</th>
                         <th>Addhaar</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +89,18 @@
                         <td>{{$row->pf}}</td>
                         <td>{{$row->esic}}</td>
                         <td>{{$row->aadhar}}</td>
+                        <td>
+                            <a href="{{url('/editEmployee/'.$row->id)}}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{url('/deleteEmployee/'.$row->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Employee will be permanently Deleted')"
+                                    class="btn btn-danger">Delete</button>
+                            </form>
+
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

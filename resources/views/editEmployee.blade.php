@@ -7,7 +7,7 @@
     <title>Employee Record</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
 
 </head>
@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+                        <a class="nav-link " aria-current="page" href="{{url('/')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="{{url('/searchEmployee')}}">Search Employee</a>
+                        <a class="nav-link active " aria-current="page" href="{{url('/addEmployee')}}">Add Employee</a>
                     </li>
                 </ul>
             </div>
@@ -67,59 +67,56 @@
 
     <div class="container ">
 
-        <div class="row">
-            <div class="col p-2">
-                <h5 class="text-center mt-5 mb-5">Only Excel Files are supported with Correct Header</h5>
-                <form class="form-container" action="{{ url('import') }}" method="POST" enctype='multipart/form-data'>
-                    @csrf
-                    <div class="upload-files-container">
-                        <div class="drag-file-area">
+        <div class="row justify-content-md-center">
 
-                            <div class="col">
-                                <label for="upload" class="material-icons-outlined upload-icon"> file_upload </label>
-                                <input id="upload" class="form-control form-control-lg" type="file" name="file">
-                            </div>
-                        </div>
-                        <button type="submit" class="upload-button"> Upload </button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col">
+            <div class="col-6">
                 <div class=" mx-auto border border-dark mt-5 p-4 rounded text-center">
-                    <span class=" heading">Add Employee</span>
-                    <form class="row mt-3" method="POST" action="{{url('store')}}">
+                    <a href="{{ url()->previous() }}" class="btn btn-info float-end">Back</a>
+                    <div class="mb-4">
+                        <span class="heading">Add Employee</span>
+                    </div>
+                    <form class="row mt-3" method="POST" action="{{url('updateEmployee/'.$data->id)}}">
                         @csrf
+                        @method('PUT')
+
                         <div class="col-6 mb-3">
-                            <input type="text" name="empl_name" class="form-control" placeholder="Employee Name">
+                            <input type="text" name="empl_name" class="form-control" placeholder="Employee Name"
+                                value="{{$data ->empl_name}}">
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" name="father_name" class="form-control" placeholder="Father Name">
+                            <input type="text" name="father_name" class="form-control" placeholder="Father Name"
+                                value="{{$data->father_name}}">
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" name="emp_number" class="form-control" placeholder="Number">
+                            <input type="text" name="emp_number" class="form-control" placeholder="Number"
+                                value="{{$data->emp_number}}">
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" name="pf" class="form-control" placeholder="PF Number">
+                            <input type="text" name="pf" class="form-control" placeholder="PF Number"
+                                value="{{$data->pf}}">
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" name="esic" class="form-control" placeholder="ESIC">
+                            <input type="text" name="esic" class="form-control" placeholder="ESIC"
+                                value="{{$data->esic}}">
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" name="aadhar" class="form-control" placeholder="Addhaar">
+                            <input type="text" name="aadhar" class="form-control" placeholder="Addhaar"
+                                value="{{$data->aadhar}}">
                         </div>
                         <div class="col-6 mb-3">
                             <label for="date" class="form-label">Date of Joining</label>
-                            <input type="date" name="date_of_joining" class="form-control">
+                            <input type="date" name="date_of_joining" class="form-control"
+                                value="{{$data->date_of_joining}}">
                         </div>
                         <div class="col-6 mb-3">
                             <label for="date" class="form-label">Date of Resign</label>
-                            <input type="date" name="date_of_resign" class="form-control" placeholder="Date">
+                            <input type="date" name="date_of_resign" class="form-control" placeholder="Date"
+                                value="{{$data->date_of_resign}}">
                         </div>
 
                         <div class="col-12 d-grid">
                             <br>
-                            <button type="submit" class="btn btn-lg btn-outline-success mb-3">Save</button>
+                            <button type="submit" class="btn btn-lg btn-warning mb-3">Update</button>
                         </div>
                     </form>
                 </div>
